@@ -1,3 +1,332 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --legno: #4A3728;
+  --abete: #2D5A3D;
+  --crema: #FAF8F5;
+  --mattone: #8B4513;
+  --miele: #D4A66A;
+  --pietra: #6B6B6B;
+
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 1.5vw, 1rem);
+  --space-md: clamp(1rem, 2.5vw, 2rem);
+  --space-lg: clamp(2rem, 5vw, 4rem);
+  --space-xl: clamp(3rem, 7vw, 5rem);
+  --space-2xl: clamp(4rem, 10vw, 8rem);
+
+  --radius-sm: 1rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+
+  --text-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 1.2vw, 1rem);
+  --text-base: clamp(1rem, 1.5vw, 1.25rem);
+  --text-lg: clamp(1.25rem, 2vw, 1.75rem);
+  --text-xl: clamp(1.75rem, 3vw, 2.5rem);
+  --text-2xl: clamp(2.5rem, 5vw, 4rem);
+  --text-3xl: clamp(3.5rem, 8vw, 7rem);
+  --text-4xl: clamp(5rem, 12vw, 11rem);
+  --text-massive: clamp(8rem, 20vw, 18rem);
+}
+
+* {
+  cursor: none;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: 'Nunito', 'Open Sans', sans-serif;
+  background-color: var(--crema);
+  color: var(--legno);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+.font-serif {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--legno);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+}
+
+.cursor-follower {
+  width: 8px;
+  height: 8px;
+  background: var(--miele);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.cursor-hover {
+  transform: scale(2.5);
+  background: var(--miele);
+  border-color: var(--miele);
+}
+
+/* Text animations */
+.char {
+  display: inline-block;
+  transform-origin: bottom;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.line {
+  overflow: hidden;
+}
+
+/* Reveal animations */
+.reveal-up {
+  clip-path: inset(100% 0 0 0);
+}
+
+.reveal-left {
+  clip-path: inset(0 100% 0 0);
+}
+
+.reveal-right {
+  clip-path: inset(0 0 0 100%);
+}
+
+/* Distortion */
+.distort {
+  filter: url(#distortion);
+}
+
+/* Marquee */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Broken grid helpers */
+.offset-left {
+  margin-left: clamp(-8rem, -15vw, -2rem);
+}
+
+.offset-right {
+  margin-right: clamp(-8rem, -15vw, -2rem);
+}
+
+.pull-up {
+  margin-top: clamp(-6rem, -10vw, -2rem);
+}
+
+.push-down {
+  margin-bottom: clamp(-6rem, -10vw, -2rem);
+}
+
+/* Asymmetric containers */
+.container-broken {
+  width: min(90vw, 1400px);
+  margin-left: clamp(2rem, 8vw, 10rem);
+}
+
+.container-wide {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.container-narrow {
+  width: min(65vw, 800px);
+  margin-left: clamp(5rem, 15vw, 20rem);
+}
+
+/* Organic shapes */
+.blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.blob-2 {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+/* Image treatments */
+.img-organic {
+  border-radius: 0 0 40% 0 / 0 0 30% 0;
+}
+
+.img-torn {
+  clip-path: polygon(0 0, 100% 2%, 98% 100%, 3% 97%);
+}
+
+.img-diagonal {
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Noise overlay */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--legno) 0%, var(--miele) 50%, var(--abete) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stroke text */
+.stroke-text {
+  -webkit-text-stroke: 2px var(--legno);
+  color: transparent;
+}
+
+@media (min-width: 768px) {
+  .stroke-text {
+    -webkit-text-stroke: 3px var(--legno);
+  }
+}
+
+/* Horizontal scroll section */
+.horizontal-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-lg);
+}
+
+.horizontal-scroll > * {
+  flex-shrink: 0;
+}
+
+/* Link hover effect */
+.link-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--miele);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Magnetic button */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Selection */
+::selection {
+  background: var(--miele);
+  color: var(--legno);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--crema);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--legno);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--abete);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+
+  .cursor, .cursor-follower {
+    display: none;
+  }
+
+  .container-broken {
+    margin-left: 1rem;
+    width: calc(100vw - 2rem);
+  }
+
+  .container-narrow {
+    margin-left: 1rem;
+    width: calc(100vw - 2rem);
+  }
+}
