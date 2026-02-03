@@ -158,20 +158,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative h-full flex flex-col justify-end pb-[10vh] md:pb-[15vh]">
-          <div className="container-broken">
+        <div className="relative h-full flex flex-col justify-center md:justify-end md:pb-[15vh]">
+          <div className="container-broken text-center md:text-left px-6">
 
-            <h1 className="hero-title font-serif text-white leading-[1.2] mb-6 md:mb-10 overflow-visible [&_.char]:overflow-visible [&_.word]:overflow-visible" style={{ fontSize: 'var(--text-4xl)' }}>
+            <h1 className="hero-title font-serif text-white leading-[1] mb-6 md:mb-10 overflow-visible [&_.char]:overflow-visible [&_.word]:overflow-visible tracking-tight" style={{ fontSize: 'clamp(2.8rem, 12vw, 7rem)' }}>
               Cucina<br />
               <span className="text-amber-400">di montagna</span>
             </h1>
 
-            <p className="hero-subtitle text-white/90 max-w-md md:max-w-lg text-base md:text-lg mb-8 md:mb-12 leading-relaxed">
+            <p className="hero-subtitle text-white/90 max-w-md md:max-w-lg text-base md:text-lg mb-8 md:mb-12 leading-relaxed mx-auto md:mx-0">
               Sapori autentici della Valle Camonica.<br className="hidden md:block" />
               Vista sull'Adamello. Tradizione familiare.
             </p>
 
-            <div className="flex flex-wrap gap-4 md:gap-6">
+            <div className="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-start">
               <Link
                 to="/menu"
                 className="hero-cta group relative overflow-hidden bg-amber-500 text-stone-900 px-6 md:px-10 py-3 md:py-4 rounded-2xl font-semibold"
@@ -254,7 +254,23 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex gap-4 md:gap-6 overflow-x-auto pb-6 px-6 md:px-10 scrollbar-hide snap-x snap-mandatory">
+        {/* Indicatore scroll mobile */}
+        <div className="flex md:hidden items-center justify-end gap-2 px-6 mb-4 text-stone-500">
+          <span className="text-xs">Scorri per vedere</span>
+          <motion.span
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="text-amber-600"
+          >
+            →
+          </motion.span>
+        </div>
+
+        <div className="relative">
+          {/* Gradient fade destro per indicare contenuto */}
+          <div className="absolute right-0 top-0 bottom-6 w-16 bg-gradient-to-l from-crema to-transparent z-10 pointer-events-none md:hidden" />
+
+          <div className="flex gap-4 md:gap-6 overflow-x-auto pb-6 px-6 md:px-10 scrollbar-hide snap-x snap-mandatory">
           {[
             { img: casoncelli, categoria: 'Primo', nome: 'Casoncelli della Valle', desc: 'Fatti a mano da Antonietta con burro fuso e salvia' },
             { img: cervo, categoria: 'Secondo', nome: 'Cervo e Polenta', desc: 'Gulasch di cervo con polenta taragna fumante' },
@@ -305,6 +321,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
