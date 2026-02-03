@@ -10,6 +10,9 @@ import heroImage from '../assets/foto/terrazza-tavolo-vista-adamello.webp'
 import casoncelli from '../assets/foto/casoncelli-fatti-mano.webp'
 import cervo from '../assets/foto/gulasch-cervo-polenta.webp'
 import salaInterna from '../assets/foto/sala-interna-camino.webp'
+import cappuccinoTerrazza from '../assets/cappuccino-terrazza-fiori.webp'
+import terrazzaTavoli from '../assets/terrazza-tavoli-vista-montagne.webp'
+import esternoRistorante from '../assets/esterno-ristorante-cavallino.webp'
 import vistaAdamello from '../assets/foto/vista-adamello-estate.webp'
 import chiesetta from '../assets/foto/chiesetta-san-clemente-tramonto.webp'
 import terrazzaFiori from '../assets/foto/terrazza-fiori-montagne.webp'
@@ -226,8 +229,8 @@ export default function Home() {
 
           <div className="col-span-12 md:col-span-4 px-6 md:px-0">
             <img
-              src={salaInterna}
-              alt="Sala interna"
+              src={cappuccinoTerrazza}
+              alt="Cappuccino in terrazza con vista montagne"
               className="w-full aspect-[4/5] object-cover rounded-2xl"
             />
           </div>
@@ -381,15 +384,15 @@ export default function Home() {
           <div className="col-span-12 md:col-span-5 relative h-[50vh] md:h-[70vh] order-1 md:order-2 mb-8 md:mb-0 px-6 md:px-0">
             <div className="terrazza-img-1 absolute top-0 right-0 w-[65%]">
               <img
-                src={vistaAdamello}
-                alt="Vista Adamello"
+                src={terrazzaTavoli}
+                alt="Terrazza con tavoli e vista montagne"
                 className="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl"
               />
             </div>
             <div className="terrazza-img-2 absolute bottom-0 left-0 w-[55%]">
               <img
-                src={terrazzaFiori}
-                alt="Terrazza con fiori"
+                src={vistaAdamello}
+                alt="Vista Adamello"
                 className="w-full aspect-square object-cover rounded-2xl shadow-xl"
               />
             </div>
@@ -397,11 +400,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Territorio */}
+      {/* Il Ristorante */}
       <section className="relative h-[70vh]">
         <img
-          src={chiesetta}
-          alt="Chiesetta San Clemente"
+          src={esternoRistorante}
+          alt="Esterno del Ristorante Il Cavallino"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
@@ -409,19 +412,19 @@ export default function Home() {
         <div className="relative h-full flex items-center">
           <div className="container-broken">
             <div className="max-w-2xl">
-              <span className="text-amber-400 text-xs uppercase tracking-[0.3em] mb-4 block">Il Territorio</span>
+              <span className="text-amber-400 text-xs uppercase tracking-[0.3em] mb-4 block">Il Ristorante</span>
               <h2 className="font-serif text-white leading-[1.1] mb-6" style={{ fontSize: 'var(--text-3xl)' }}>
-                Alta Valle Camonica
+                Il Cavallino
               </h2>
               <p className="text-white/90 text-lg leading-relaxed mb-8 max-w-md">
-                A pochi passi dalla Chiesetta di San Clemente e punto di partenza
-                per la Val di Canè e il Lago Aviolo.
+                Nel cuore della Frazione Tù, a 1100 metri d'altitudine.
+                Un'atmosfera accogliente tra fiori e balconi in legno.
               </p>
               <Link
-                to="/territorio"
+                to="/chi-siamo"
                 className="inline-flex items-center gap-3 bg-white text-stone-900 px-8 py-4 rounded-2xl font-medium hover:bg-amber-400 transition-colors"
               >
-                Esplora
+                Scopri di più
                 <span>→</span>
               </Link>
             </div>
