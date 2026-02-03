@@ -53,13 +53,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
+      {/* Header container */}
+      <header
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'py-3 bg-crema shadow-md' : 'py-6'
+          scrolled ? 'h-20 bg-white shadow-md' : 'h-24 md:h-28'
         }`}
       >
-        <div className="container-broken flex justify-between items-center">
+        <div className="relative h-full px-6 md:px-10 flex items-center justify-between">
+          {/* Logo a sinistra */}
           <Link
             to="/"
             className="relative z-50 group"
@@ -72,9 +74,7 @@ export default function Navbar() {
               <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${
                 isOpen || scrolled ? 'bg-stone-800' : 'bg-white/20 backdrop-blur-sm'
               }`}>
-                <span className={`font-serif text-xl font-bold transition-colors ${
-                  isOpen || scrolled ? 'text-white' : 'text-white'
-                }`}>C</span>
+                <span className="font-serif text-xl font-bold text-white">C</span>
               </div>
               <div className={`hidden sm:block transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}>
                 <span className={`font-serif text-lg font-bold block leading-none transition-colors ${
@@ -84,7 +84,8 @@ export default function Navbar() {
             </motion.div>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Navbar centrata */}
+          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             {links.slice(1, 5).map((link) => (
               <Link
                 key={link.to}
@@ -96,9 +97,10 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-          </div>
+          </nav>
 
-          <div className="flex items-center gap-6">
+          {/* Bottoni a destra */}
+          <div className="flex items-center gap-4 md:gap-6">
             <a
               href="tel:+393391513234"
               className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-2xl font-medium text-sm transition-all duration-300 ${
@@ -142,8 +144,9 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
+      </header>
 
+      {/* Menu fullscreen */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

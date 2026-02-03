@@ -150,17 +150,18 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
         </div>
 
+        <div className="hero-badge absolute top-28 md:top-32 right-6 md:right-10 inline-flex items-center gap-3 bg-white/95 rounded-2xl px-4 py-2 md:px-6 md:py-3 rotate-3 hover:rotate-0 transition-transform duration-300">
+          <Trophy className="w-7 h-7 md:w-8 md:h-8 text-amber-600" />
+          <div>
+            <p className="font-bold text-stone-900 text-xs md:text-sm">N.1 TripAdvisor</p>
+            <p className="text-[10px] md:text-xs text-stone-600">Vezza d'Oglio • 4.6/5</p>
+          </div>
+        </div>
+
         <div className="relative h-full flex flex-col justify-end pb-[10vh] md:pb-[15vh]">
           <div className="container-broken">
-            <div className="hero-badge inline-flex items-center gap-3 bg-white/95 rounded-2xl px-4 py-2 md:px-6 md:py-3 mb-6 md:mb-10">
-              <Trophy className="w-7 h-7 md:w-8 md:h-8 text-amber-600" />
-              <div>
-                <p className="font-bold text-stone-900 text-xs md:text-sm">N.1 TripAdvisor</p>
-                <p className="text-[10px] md:text-xs text-stone-600">Vezza d'Oglio • 4.6/5</p>
-              </div>
-            </div>
 
-            <h1 className="hero-title font-serif text-white leading-[0.9] mb-6 md:mb-10" style={{ fontSize: 'var(--text-4xl)' }}>
+            <h1 className="hero-title font-serif text-white leading-[1.2] mb-6 md:mb-10 overflow-visible [&_.char]:overflow-visible [&_.word]:overflow-visible" style={{ fontSize: 'var(--text-4xl)' }}>
               Cucina<br />
               <span className="text-amber-400">di montagna</span>
             </h1>
@@ -234,92 +235,73 @@ export default function Home() {
       </section>
 
       {/* Specialità */}
-      <section ref={specialitaRef} className="py-16 bg-stone-800">
-        <div className="container-broken mb-10">
+      <section ref={specialitaRef} className="py-20 md:py-32 bg-crema">
+        <div className="container-broken mb-12 md:mb-16">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
-              <span className="text-amber-400 text-xs uppercase tracking-[0.3em] mb-4 block">Il Menu</span>
-              <h2 className="font-serif text-white leading-none" style={{ fontSize: 'var(--text-3xl)' }}>
-                Le nostre<br />specialità
+              <span className="text-amber-600 text-xs uppercase tracking-[0.3em] mb-4 block">Il Menu</span>
+              <h2 className="font-serif text-stone-800 leading-[1.1]" style={{ fontSize: 'var(--text-3xl)' }}>
+                Le nostre specialità
               </h2>
             </div>
             <Link
               to="/menu"
-              className="text-white/70 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider"
+              className="inline-flex items-center gap-3 bg-stone-800 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-500 hover:text-stone-900 transition-all duration-300"
             >
-              Vedi tutto →
+              Scopri il menu
+              <span>→</span>
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-4 px-4 md:px-0">
-          <div className="specialita-item col-span-12 md:col-span-4 md:col-start-2">
-            <div className="group relative overflow-hidden rounded-2xl">
-              <img
-                src={casoncelli}
-                alt="Casoncelli"
-                className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-amber-400 text-xs uppercase tracking-wider">Primo</span>
-                <h3 className="font-serif text-white text-2xl mt-2">Casoncelli della Valle</h3>
-                <p className="text-white/70 text-sm mt-2">Fatti a mano da Antonietta</p>
+        <div className="flex gap-4 md:gap-6 overflow-x-auto pb-6 px-6 md:px-10 scrollbar-hide snap-x snap-mandatory">
+          {[
+            { img: casoncelli, categoria: 'Primo', nome: 'Casoncelli della Valle', desc: 'Fatti a mano da Antonietta con burro fuso e salvia' },
+            { img: cervo, categoria: 'Secondo', nome: 'Cervo e Polenta', desc: 'Gulasch di cervo con polenta taragna fumante' },
+            { img: pizzoccheri, categoria: 'Primo', nome: 'Pizzoccheri Valtellinesi', desc: 'Con verza, patate e formaggio Casera' },
+            { img: gnocchetti, categoria: 'Primo', nome: 'Gnocchetti Saraceno', desc: 'Conditi con burro di malga e formaggi locali' },
+          ].map((piatto, i) => (
+            <div
+              key={i}
+              className="specialita-item flex-shrink-0 w-[280px] md:w-[350px] snap-start"
+            >
+              <div className="group relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-shadow duration-500">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={piatto.img}
+                    alt={piatto.nome}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-amber-500 text-stone-900 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
+                      {piatto.categoria}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-stone-800 text-xl mb-2">{piatto.nome}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{piatto.desc}</p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
 
-          <div className="specialita-item col-span-6 md:col-span-4">
-            <div className="group relative overflow-hidden rounded-2xl">
-              <img
-                src={cervo}
-                alt="Gulasch di cervo"
-                className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-amber-400 text-xs uppercase tracking-wider">Secondo</span>
-                <h3 className="font-serif text-white text-xl mt-2">Cervo e Polenta</h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="specialita-item col-span-6 md:col-span-2">
-            <div className="group relative overflow-hidden rounded-2xl">
-              <img
-                src={pizzoccheri}
-                alt="Pizzoccheri"
-                className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="font-serif text-white text-lg">Pizzoccheri</h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="specialita-item col-span-6 md:col-span-3 md:col-start-2">
-            <div className="group relative overflow-hidden rounded-2xl">
-              <img
-                src={gnocchetti}
-                alt="Gnocchetti"
-                className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="font-serif text-white text-lg">Gnocchetti Saraceno</h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="specialita-item col-span-6 md:col-span-5">
-            <div className="bg-stone-700 rounded-2xl p-8 h-full flex flex-col justify-center">
-              <p className="text-white/60 text-xs uppercase tracking-wider mb-3">Info</p>
-              <p className="text-white font-serif text-xl leading-relaxed">
-                Il menu cambia con le stagioni. Opzioni vegetariane e senza glutine sempre disponibili.
+          {/* Card finale con CTA */}
+          <div className="specialita-item flex-shrink-0 w-[280px] md:w-[350px] snap-start">
+            <div className="h-full bg-stone-800 rounded-3xl p-8 flex flex-col justify-center">
+              <p className="text-amber-400 text-xs uppercase tracking-wider mb-4">Scopri di più</p>
+              <p className="text-white font-serif text-2xl leading-relaxed mb-6">
+                Il menu cambia con le stagioni
               </p>
-              <Link to="/menu" className="text-amber-400 mt-4 font-semibold hover:text-white transition-colors">
-                Scopri il menu completo →
+              <p className="text-white/60 text-sm mb-6">
+                Opzioni vegetariane e senza glutine sempre disponibili.
+              </p>
+              <Link
+                to="/menu"
+                className="inline-flex items-center gap-2 text-amber-400 font-semibold hover:text-white transition-colors"
+              >
+                Menu completo
+                <span className="w-6 h-6 rounded-full border border-amber-400 flex items-center justify-center group-hover:bg-amber-400 transition-colors">→</span>
               </Link>
             </div>
           </div>
@@ -430,42 +412,83 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Info Grid */}
-      <section className="py-16 bg-crema">
-        <div className="grid grid-cols-12 gap-4 px-4 md:px-0">
-          <div className="col-span-12 md:col-span-4 md:col-start-2">
-            <div className="bg-stone-800 rounded-2xl p-8 h-full">
-              <Clock className="w-10 h-10 text-amber-400 mb-4" />
-              <h3 className="font-serif text-white text-xl mb-4">Orari</h3>
-              <div className="space-y-2 text-white/80 text-sm">
-                <div className="flex justify-between">
-                  <span>Lun-Ven</span>
-                  <span>08:00-00:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sab-Dom</span>
-                  <span>07:45-00:15</span>
-                </div>
+      {/* Dove Siamo - Mappa e Info */}
+      <section className="py-16 md:py-24 bg-stone-800">
+        <div className="container-broken mb-10 md:mb-14">
+          <div className="text-center">
+            <span className="text-amber-400 text-xs uppercase tracking-[0.3em] mb-4 block">Raggiungici</span>
+            <h2 className="font-serif text-white leading-[1.1]" style={{ fontSize: 'var(--text-2xl)' }}>
+              Dove siamo
+            </h2>
+          </div>
+        </div>
+
+        {/* Cards Info */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-10 mb-8">
+          {/* Orari */}
+          <div className="bg-stone-700 rounded-2xl p-6 md:p-8 text-center">
+            <Clock className="w-8 h-8 text-amber-400 mb-4 mx-auto" />
+            <h3 className="font-serif text-white text-lg mb-4">Orari</h3>
+            <div className="space-y-2 text-white/80 text-sm">
+              <div className="flex justify-between max-w-[180px] mx-auto">
+                <span>Lun-Ven</span>
+                <span>08:00-00:00</span>
               </div>
-              <p className="text-white/60 text-xs mt-4">Colazione, pranzo, merenda e cena</p>
+              <div className="flex justify-between max-w-[180px] mx-auto">
+                <span>Sab-Dom</span>
+                <span>07:45-00:15</span>
+              </div>
             </div>
+            <p className="text-white/50 text-xs mt-4">Colazione, pranzo, merenda e cena</p>
           </div>
 
-          <div className="col-span-6 md:col-span-4">
-            <div className="bg-stone-700 rounded-2xl p-8 h-full">
-              <MapPin className="w-10 h-10 text-amber-400 mb-4" />
-              <h3 className="font-serif text-white text-xl mb-4">Dove siamo</h3>
-              <p className="text-white/80 text-sm">Via Tù 24, Frazione Tù</p>
-              <p className="text-white/80 text-sm">25059 Vezza d'Oglio (BS)</p>
-              <p className="text-amber-400 text-sm mt-4">Alta Valle Camonica</p>
-            </div>
+          {/* Indirizzo */}
+          <div className="bg-stone-700 rounded-2xl p-6 md:p-8 text-center">
+            <MapPin className="w-8 h-8 text-amber-400 mb-4 mx-auto" />
+            <h3 className="font-serif text-white text-lg mb-4">Indirizzo</h3>
+            <p className="text-white/80 text-sm">Via Tù 24, Frazione Tù</p>
+            <p className="text-white/80 text-sm">25059 Vezza d'Oglio (BS)</p>
+            <p className="text-amber-400 text-sm mt-4">Alta Valle Camonica • 1100m</p>
           </div>
 
-          <div className="col-span-6 md:col-span-2">
-            <div className="bg-amber-500 rounded-2xl p-6 h-full flex flex-col justify-center items-center text-center">
-              <ParkingCircle className="w-10 h-10 text-stone-900 mb-2" />
-              <p className="text-stone-900 font-semibold text-sm">Parcheggio gratuito</p>
-            </div>
+          {/* Parcheggio */}
+          <div className="bg-amber-500 rounded-2xl p-6 md:p-8 flex flex-col justify-center text-center">
+            <ParkingCircle className="w-8 h-8 text-stone-900 mb-4 mx-auto" />
+            <h3 className="font-serif text-stone-900 text-lg mb-2">Parcheggio</h3>
+            <p className="text-stone-800 text-sm">Ampio parcheggio gratuito disponibile proprio davanti al ristorante.</p>
+          </div>
+        </div>
+
+        {/* Mappa */}
+        <div className="px-4 md:px-10">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2762.8900940076894!2d10.398689076892867!3d46.25165927911784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47832e9c8a555555%3A0x1234567890abcdef!2sVia%20T%C3%B9%2C%2024%2C%2025059%20Vezza%20d&#39;Oglio%20BS!5e0!3m2!1sit!2sit!4v1699000000000!5m2!1sit!2sit"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Mappa Il Cavallino"
+              className="w-full h-[300px] md:h-[450px]"
+            />
+
+            {/* Overlay con link indicazioni */}
+            <a
+              href="https://www.google.com/maps/dir//Via+T%C3%B9,+24,+25059+Vezza+d'Oglio+BS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white hover:bg-amber-50 rounded-2xl p-4 shadow-xl flex items-center gap-3 transition-colors"
+            >
+              <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 text-stone-900" />
+              </div>
+              <div>
+                <p className="font-semibold text-stone-900 text-sm">Ottieni indicazioni</p>
+                <p className="text-stone-500 text-xs">Apri in Google Maps</p>
+              </div>
+            </a>
           </div>
         </div>
       </section>
